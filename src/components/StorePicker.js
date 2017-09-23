@@ -1,16 +1,19 @@
-import React from 'react';
+import React from 'react'
 import {getFunName} from './../helpers';
 
-class StorePicker extends React.Component {
 
-    constructor() {
-        super();
+class StorePicker extends React.Component {
+    
+    constructor(props) {
+        super(props);
         this.gotToStore = this.gotToStore.bind(this);
     }
 
     gotToStore(event) {
         event.preventDefault();
-        console.log(this.storeInput.value);
+        const storeId = this.storeInput.value;
+        this.props.history.push(`/store/${storeId}`); //navigate to the passed in path
+        
     }
 
 
