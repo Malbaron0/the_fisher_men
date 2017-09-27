@@ -59,7 +59,7 @@ class App extends React.Component {
                     <Header tagline="Fresh Seafood Market" />
                     <ul className="list-of-fish">{fishList}</ul>
                 </div>
-                <Order />
+                <Order fishies = {this.state.fishies} order = {this.state.order}/>
                 <Inventory loadSamples={this.loadSamples} addFish={this.addFish} />
             </div>
         )
