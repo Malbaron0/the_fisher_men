@@ -4,6 +4,7 @@ import Order from './Order';
 import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
 import Fish from './Fish';
+import base from '../fireBase';
 
 class App extends React.Component {
     constructor() {
@@ -18,6 +19,17 @@ class App extends React.Component {
         this.addFish = this.addFish.bind(this);
         this.loadSamples = this.loadSamples.bind(this);
         this.addToOrder = this.addToOrder.bind(this);
+    }
+
+    //Lifecycle method
+    //using firebase to store the data (fish states) for this store
+    componentWillMount() {
+        this.ref = base.syncState(`${this.props.match.params.storeId}/fishies`, {context: this, state: 'fishies'});
+    }
+
+    //stop sync with database when switching to another store
+    componentWillUnmount(){
+        base.removeBinding(this.ref);
     }
 
     addFish(fish) {
