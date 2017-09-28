@@ -22,7 +22,7 @@ class App extends React.Component {
     }
 
     //Lifecycle method
-    //using firebase to store the data (fish states) for this store
+    //using firebase to store and sync the data (fish states) for this store
     componentWillMount() {
         this.ref = base.syncState(`${this.props.match.params.storeId}/fishies`, {context: this, state: 'fishies'});
     }
