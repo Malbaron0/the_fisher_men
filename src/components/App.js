@@ -22,14 +22,27 @@ class App extends React.Component {
     }
 
     //Lifecycle method
-    //using firebase to store and sync the data (fish states) for this store
     componentWillMount() {
-        this.ref = base.syncState(`${this.props.match.params.storeId}/fishies`, {context: this, state: 'fishies'});
+        //using firebase to store and sync the data (fish states) for this store
+        this.ref = base.syncState(`${this.props.match.params.storeId}/fishies`, { context: this, state: 'fishies' });
+
+        //check local storage contains orders
+        const localOrderStorage = localStorage.getItem(`order-${this.props.match.params.storeId}`);
+
+        if (localOrderStorage) {
+            //update order state
+            this.setState({ order: JSON.parse(localOrderStorage) });
+        }
     }
 
     //stop sync with database when switching to another store
-    componentWillUnmount(){
+    componentWillUnmount() {
         base.removeBinding(this.ref);
+    }
+
+    //Hooking into this method to set our local storage to maintain orders
+    componentWillUpdate(nextProps, nextState) {
+        localStorage.setItem(`order-${this.props.match.params.storeId}`, JSON.stringify(nextState.order));
     }
 
     addFish(fish) {
@@ -49,21 +62,21 @@ class App extends React.Component {
         });
     }
 
-    addToOrder(key){
+    addToOrder(key) {
         //copy of state
-        const order = {...this.state.order};
+        const order = { ...this.state.order };
 
         //update oe add new number of orderes
         order[key] = order[key] + 1 || 1;
-        this.setState({order});
+        this.setState({ order });
     }
 
     render() {
         let fishList = Object.keys(this.state.fishies)
-                             .map(key => <Fish key = {key} 
-                                               details = {this.state.fishies[key]}
-                                               addToOrder = {this.addToOrder}
-                                               keyIndex = {key}/>)
+            .map(key => <Fish key={key}
+                details={this.state.fishies[key]}
+                addToOrder={this.addToOrder}
+                keyIndex={key} />)
 
         return (
             <div className="the-fisher-men">
@@ -71,7 +84,7 @@ class App extends React.Component {
                     <Header tagline="Fresh Seafood Market" />
                     <ul className="list-of-fish">{fishList}</ul>
                 </div>
-                <Order fishies = {this.state.fishies} order = {this.state.order}/>
+                <Order fishies={this.state.fishies} order={this.state.order} />
                 <Inventory loadSamples={this.loadSamples} addFish={this.addFish} />
             </div>
         )
