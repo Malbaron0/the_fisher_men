@@ -20,6 +20,7 @@ class App extends React.Component {
         this.updateFish = this.updateFish.bind(this);
         this.loadSamples = this.loadSamples.bind(this);
         this.addToOrder = this.addToOrder.bind(this);
+        this.removeFish = this.removeFish.bind(this);
     }
 
     //Lifecycle method
@@ -78,6 +79,13 @@ class App extends React.Component {
         this.setState({ order });
     }
 
+    removeFish(key){
+        const fishies = {...this.state.fishies};
+        fishies[key] = null //delete fishies[key] does not work well with firebase using null instead
+        this.setState({fishies});
+
+    }
+
     render() {
         let fishList = Object.keys(this.state.fishies)
             .map(key => <Fish key={key}
@@ -92,7 +100,7 @@ class App extends React.Component {
                     <ul className="list-of-fish">{fishList}</ul>
                 </div>
                 <Order fishies={this.state.fishies} order={this.state.order} />
-                <Inventory fishies={this.state.fishies} loadSamples={this.loadSamples} addFish={this.addFish} updateFish={this.updateFish}/>
+                <Inventory removeFish = {this.removeFish} fishies={this.state.fishies} loadSamples={this.loadSamples} addFish={this.addFish} updateFish={this.updateFish}/>
             </div>
         )
     }
