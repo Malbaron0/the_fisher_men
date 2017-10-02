@@ -1,8 +1,9 @@
 import React from 'react';
 import { formatPrice } from '../helpers';
+import CSSTransitionGroup from 'react-addons-css-transition-group'; //easy way to perform CSS transitions and animations when a React component enters or leaves the DOM
 
 class Order extends React.Component {
-    constructor(){
+    constructor() {
         super();
         this.renderOrder = this.renderOrder.bind(this);
     }
@@ -11,7 +12,7 @@ class Order extends React.Component {
     renderOrder(key) {
         const fish = this.props.fishies[key];
         const count = this.props.order[key];
-        const removeButton = <button className ="warning" onClick = {() => this.props.removeOrder(key)}>&times;</button>
+        const removeButton = <button className="warning" onClick={() => this.props.removeOrder(key)}>&times;</button>
 
         if (!fish || fish.status === 'unavailable') {
             return <li key={key}>{removeButton}Sorry, {fish ? fish.name : 'fish'} is no longer available</li>
@@ -21,7 +22,7 @@ class Order extends React.Component {
 
             <li key={key}>
                 <span>{removeButton} {count}lbs {fish.name}</span>
-                <span className="price">{ formatPrice((count * fish.price))}</span>
+                <span className="price">{formatPrice((count * fish.price))}</span>
             </li>
         )
     }
@@ -46,12 +47,19 @@ class Order extends React.Component {
         return (
             <div className="order-wrap">
                 <h2>Your Order</h2>
-                <ul className="order">
+
+                <CSSTransitionGroup className="order"
+                    component="ul"
+                    transitionName="order"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}>
+
                     {orderIds.map(key => this.renderOrder(key))}
                     <li className="total">
                         <strong>Total: {formatPrice(total)}</strong>
                     </li>
-                </ul>
+
+                </CSSTransitionGroup>
             </div>
         )
     }
