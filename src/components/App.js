@@ -21,6 +21,7 @@ class App extends React.Component {
         this.loadSamples = this.loadSamples.bind(this);
         this.addToOrder = this.addToOrder.bind(this);
         this.removeFish = this.removeFish.bind(this);
+        this.removeOrder = this.removeOrder.bind(this);
     }
 
     //Lifecycle method
@@ -86,6 +87,12 @@ class App extends React.Component {
 
     }
 
+    removeOrder(key){
+        const order = {...this.state.order};
+        delete order[key];
+        this.setState({order});
+    }
+
     render() {
         let fishList = Object.keys(this.state.fishies)
             .map(key => <Fish key={key}
@@ -99,7 +106,7 @@ class App extends React.Component {
                     <Header tagline="Fresh Seafood Market" />
                     <ul className="list-of-fish">{fishList}</ul>
                 </div>
-                <Order fishies={this.state.fishies} order={this.state.order} />
+                <Order removeOrder = {this.removeOrder} fishies={this.state.fishies} order={this.state.order} />
                 <Inventory removeFish = {this.removeFish} fishies={this.state.fishies} loadSamples={this.loadSamples} addFish={this.addFish} updateFish={this.updateFish}/>
             </div>
         )
