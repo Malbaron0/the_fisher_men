@@ -10,11 +10,22 @@ class Inventory extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.renderLogin = this.renderLogin.bind(this);
         this.authenticate = this.authenticate.bind(this);
+        this.authHandler = this.authHandler.bind(this);
+        this.logout = this.logout.bind(this);
         this.state = {
             uid: null,
             owner: null
 
         }
+    }
+
+    componentDidMount() {        
+        //stackoverflow.com/a/20279485/3979621
+        base.initializedApp.firebase_.auth().onAuthStateChanged(user => {
+            if(user){
+                this.authHandler(user);
+            }
+        });
     }
 
     //need to update state with this method
@@ -31,24 +42,48 @@ class Inventory extends React.Component {
 
     }
 
-    authenticate(provider){
-        var provider = new firebase.auth.FacebookAuthProvider();
-        
-        
-        firebase.auth().signInWithPopup(provider).then(function(authData) {
-            console.log(authData);
-        }).catch(function(error) {
+    authenticate(provider) {
+        firebase.auth().signInWithPopup(provider).then(authData => {
+            this.authHandler(authData.user);
+        }).catch(error => {
             console.log(error);
         });
     }
 
     //call this callback once user has signed in successfully
-    authHandler(err, authData){
-        if (err) throw err;
+    authHandler(authData) {
+        //get all information of current store
+        const storeRef = base.initializedApp.firebase_.database().ref(this.props.storeId);
 
-        console.log(authData);
+        //find the store in firebase
+        storeRef.once('value', (snapshot) => {
+            const data = snapshot.val() || {};
+
+            //clain it as your own if there is no owner
+            if (!data.owner) {
+                storeRef.set({
+                    owner: authData.uid
+                });
+            }
+
+            this.setState({
+                uid: authData.uid,
+                owner: data.owner || authData.uid
+            })
+        });
+
     }
 
+    logout () {
+        base.initializedApp.firebase_.auth().signOut().then(() => {
+            this.setState({
+                uid: null
+            })
+          }, (error) => {
+            // An error happened.
+          });
+    }
+    
     renderInventory(key) {
         const fish = this.props.fishies[key];
         return (
@@ -70,15 +105,15 @@ class Inventory extends React.Component {
         return (
             <nav className="login">
                 <h2>Inventory</h2>
-                <button className="github" onClick={() => this.authenticate("github")}>Log using Github</button>
-                <button className="facebook" onClick={() => this.authenticate("facebook")}>Log using Facebook</button>
+                <button className="github" onClick={() => this.authenticate(new firebase.auth.GithubAuthProvider())}>Log using Github</button>
+                <button className="facebook" onClick={() => this.authenticate(new firebase.auth.FacebookAuthProvider())}>Log using Facebook</button>
             </nav>
         )
     }
 
 
     render() {
-        const logout = <button>Log Out</button>
+        const logout = <button onClick = {this.logout}>Log Out</button>
 
         if (!this.state.uid) {
             return <div>{this.renderLogin()}</div>
