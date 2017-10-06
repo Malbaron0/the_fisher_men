@@ -2,6 +2,7 @@
   "name": "the_fisher_men",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://malbaron0.github.io/Hosting-The-Fisher-Men/",
   "dependencies": {
     "concurrently": "^3.5.0",
     "firebase": "^4.4.0",

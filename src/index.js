@@ -9,8 +9,12 @@ import NotFound from './components/NotFound';
 
 
 const Main = () => {
+    
+    //for github pages
+    const repo = `/${window.location.pathname.split('/')[1]}`;
+    
     return (
-        <BrowserRouter>
+        <BrowserRouter basename = {repo}>
             <Switch>
                 <Route exact path='/' component={StorePicker} />
                 <Route path='/store/:storeId' component={App} />
