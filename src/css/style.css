@@ -342,29 +342,11 @@
     -webkit-transform: translateX(-50%) rotateY(10deg) translateX(50%) scale(1.08) translateX(24px);
             transform: translateX(-50%) rotateY(10deg) translateX(50%) scale(1.08) translateX(24px);
   }
-  input#fold:not(:checked) ~ #main .the-fisher-men > * {
+  #main .the-fisher-men > * {
     -webkit-transform: none;
             transform: none;
   }
-  label[for="fold"] {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-    background: #000;
-    color: #fff;
-    border: 2px solid #000;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-  }
-  input#fold {
-    display: none;
-  }
-  input#fold:checked + label {
-    background: #fff;
-    color: #000;
-  }
+
   ul {
     list-style: none;
     margin: 0;
