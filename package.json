@@ -5,19 +5,25 @@
   "homepage": "https://malbaron0.github.io/Hosting-The-Fisher-Men/",
   "dependencies": {
     "concurrently": "^3.5.0",
-    "firebase": "^4.4.0",
+    "firebase": "^5.7.3",
     "history": "^4.7.2",
     "re-base": "^3.0.4",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.13"
+    "react-scripts": "^2.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
