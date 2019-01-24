@@ -8,7 +8,7 @@ class Fish extends React.Component {
         const buttonText = isAvaliable ? 'Add To Cart' : 'Sold out! :(';
         
         return (
-            <li className="menu-fish">
+            <div className="menu-fish">
                 <img src={details.image} alt={details.name} />
                 <h3 className="fish-name">
                     {details.name}
@@ -17,7 +17,7 @@ class Fish extends React.Component {
                 <p>{details.desc}</p>
 
                 <button onClick={() => addToOrder(keyIndex)} disabled={!isAvaliable}>{buttonText}</button>
-            </li>
+            </div>
         )
     }
 }

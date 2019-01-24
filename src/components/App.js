@@ -108,11 +108,11 @@ class App extends React.Component {
             <div className="the-fisher-men">
                 <div className="menu">
                     <Header tagline="Fresh Seafood Market" />
-                    <ul className="list-of-fish">{fishList}</ul>
+                    <div className="list-of-fish">{fishList}</div>
                 </div>
-                <Order removeOrder = {this.removeOrder} fishies={this.state.fishies} order={this.state.order} />
             </div>
         )
+                // <Order removeOrder = {this.removeOrder} fishies={this.state.fishies} order={this.state.order} />
                 // <Inventory storeId = {this.props.match.params.storeId} removeFish = {this.removeFish} fishies={this.state.fishies} loadSamples={this.loadSamples} addFish={this.addFish} updateFish={this.updateFish}/>
     }
 }
