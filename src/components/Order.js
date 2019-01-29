@@ -1,6 +1,7 @@
 import React from 'react';
 import { formatPrice } from '../helpers';
 import CSSTransitionGroup from 'react-addons-css-transition-group'; //easy way to perform CSS transitions and animations when a React component enters or leaves the DOM
+import { throws } from 'assert';
 
 class Order extends React.Component {
     constructor() {
@@ -9,6 +10,9 @@ class Order extends React.Component {
     }
 
 
+    componentDidMount () {
+
+    }
     renderOrder(key) {
         const fish = this.props.fishies[key];
         const count = this.props.order[key];
@@ -30,10 +34,12 @@ class Order extends React.Component {
     render() {
         const { order, fishies } = this.props;
         const orderIds = Object.keys(order);
-
+        let fullCount = 0;
+        
         const total = orderIds.reduce((prev, key) => {
             const fish = fishies[key];
             const count = order[key];
+            fullCount = fullCount + count;
             const isAvailable = fish && fish.status === 'available';
 
             if (isAvailable) {
@@ -58,7 +64,6 @@ class Order extends React.Component {
                     <li className="total">
                         <strong>Total: {formatPrice(total)}</strong>
                     </li>
-
                 </CSSTransitionGroup>
             </div>
         )

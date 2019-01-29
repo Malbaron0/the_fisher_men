@@ -13,7 +13,8 @@ class App extends React.Component {
         //initial state
         this.state = {
             fishies: {},
-            order: {}
+            order: {},
+            totalCount: 0
         };
 
         // this.addFish = this.addFish.bind(this);
@@ -73,13 +74,17 @@ class App extends React.Component {
         });
     }
 
+    addTotalCount = (amount) => {
+        this.setState({totalCount: amount})
+    }
+
     addToOrder(key) {
         //copy of state
         const order = { ...this.state.order };
-
         //update oe add new number of orderes
         order[key] = order[key] + 1 || 1;
         this.setState({ order });
+        this.setState({totalCount: this.state.totalCount+1})
     }
 
     removeFish(key){
@@ -107,7 +112,7 @@ class App extends React.Component {
         return (
             <div className="the-fisher-men">
                 <div className="menu">
-                    <Header removeOrder = {this.removeOrder} fishies={this.state.fishies} order={this.state.order} tagline="Fresh Seafood Market" />
+                    <Header addTotalCount = {this.addTotalCount} totalCount = {this.state.totalCount} removeOrder = {this.removeOrder} fishies={this.state.fishies} order={this.state.order} tagline="Fresh Seafood Market" />
                     <div className="list-of-fish">{fishList}</div>
                 </div>
             </div>
