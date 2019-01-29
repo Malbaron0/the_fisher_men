@@ -107,7 +107,7 @@ class App extends React.Component {
         return (
             <div className="the-fisher-men">
                 <div className="menu">
-                    <Header tagline="Fresh Seafood Market" />
+                    <Header removeOrder = {this.removeOrder} fishies={this.state.fishies} order={this.state.order} tagline="Fresh Seafood Market" />
                     <div className="list-of-fish">{fishList}</div>
                 </div>
             </div>
