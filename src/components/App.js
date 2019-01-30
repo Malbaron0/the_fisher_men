@@ -89,15 +89,19 @@ class App extends React.Component {
 
     removeFish(key){
         const fishies = {...this.state.fishies};
+        
         fishies[key] = null //delete fishies[key] does not work well with firebase using null instead
-        this.setState({fishies});
-
+        this.setState({fishies});        
     }
-
+    
     removeOrder(key){
         const order = {...this.state.order};
+        const amountToRemove = order[key];
         delete order[key];
+        
         this.setState({order});
+        this.setState({totalCount: this.state.totalCount-amountToRemove})
+
     }
 
     render() {

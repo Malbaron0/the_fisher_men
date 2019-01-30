@@ -72,6 +72,17 @@ body {
   /* margin-top: 0; */
 }
 
+.count-notification {
+  position: absolute;
+  margin-top: 1.5em;
+  background: red;
+  border-radius: 1em;
+  width: 1.3em;
+  text-align: center;
+  color: white;
+  right: 13%;
+}
+
 header.top {
   text-align: center;
 }
@@ -89,6 +100,24 @@ h1 {
   text-align: center;
   font-weight: normal;
   margin: 0;
+}
+
+.order-wrap {
+  padding-left: 0.5em;
+  color: white;
+}
+
+
+
+.total {
+    float: right;
+    margin: 0 1em 0.5em 0;
+}
+
+
+
+ul{
+  list-style-type: none !important;
 }
 
 .list-of-fish {

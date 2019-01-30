@@ -52,7 +52,7 @@ class Order extends React.Component {
 
         return (
             <div className="order-wrap">
-                <h2>Your Order</h2>
+                <h3>Your Order</h3>
 
                 <CSSTransitionGroup className="order"
                     component="ul"

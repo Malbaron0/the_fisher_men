@@ -17,12 +17,13 @@ const Header = (props) => {
             </div>
             <div>
                 <div className="count-notification">{props.totalCount}</div>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon pull-right"></span>
-            </button>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon pull-right"></span>
+                </button>
             </div>
             <div className="collapse  navbar-collapse" id="navbarNav">
-                <Order addTotalCount = {props.addTotalCount} totalCount = {props.totalCount} removeOrder={props.removeOrder} fishies={props.fishies} order={props.order} />
+            <hr></hr>
+                <Order addTotalCount={props.addTotalCount} totalCount={props.totalCount} removeOrder={props.removeOrder} fishies={props.fishies} order={props.order} />
             </div>
         </nav>
     )
