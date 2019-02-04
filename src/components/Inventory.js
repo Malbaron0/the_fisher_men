@@ -1,7 +1,5 @@
 import React from 'react';
 import FishForm from './FishForm';
-import base from '../fireBase';
-import * as firebase from "firebase";
 
 class Inventory extends React.Component {
     constructor() {
@@ -19,14 +17,14 @@ class Inventory extends React.Component {
         }
     }
 
-    componentDidMount() {        
-        //stackoverflow.com/a/20279485/3979621
-        base.initializedApp.firebase_.auth().onAuthStateChanged(user => {
-            if(user){
-                this.authHandler(user);
-            }
-        });
-    }
+    // componentDidMount() {        
+    //     //stackoverflow.com/a/20279485/3979621
+    //     base.initializedApp.firebase_.auth().onAuthStateChanged(user => {
+    //         if(user){
+    //             this.authHandler(user);
+    //         }
+    //     });
+    // }
 
     //need to update state with this method
     handleChange(e, key) {
@@ -43,45 +41,45 @@ class Inventory extends React.Component {
     }
 
     authenticate(provider) {
-        firebase.auth().signInWithPopup(provider).then(authData => {
-            this.authHandler(authData.user);
-        }).catch(error => {
-            console.log(error);
-        });
+        // firebase.auth().signInWithPopup(provider).then(authData => {
+        //     this.authHandler(authData.user);
+        // }).catch(error => {
+        //     console.log(error);
+        // });
     }
 
     //call this callback once user has signed in successfully
     authHandler(authData) {
         //get all information of current store
-        const storeRef = base.initializedApp.firebase_.database().ref(this.props.storeId);
+        // const storeRef = base.initializedApp.firebase_.database().ref(this.props.storeId);
 
-        //find the store in firebase
-        storeRef.once('value', (snapshot) => {
-            const data = snapshot.val() || {};
+        // //find the store in firebase
+        // storeRef.once('value', (snapshot) => {
+        //     const data = snapshot.val() || {};
 
-            //clain it as your own if there is no owner
-            if (!data.owner) {
-                storeRef.set({
-                    owner: authData.uid
-                });
-            }
+        //     //clain it as your own if there is no owner
+        //     if (!data.owner) {
+        //         storeRef.set({
+        //             owner: authData.uid
+        //         });
+        //     }
 
-            this.setState({
-                uid: authData.uid,
-                owner: data.owner || authData.uid
-            })
-        });
+        //     this.setState({
+        //         uid: authData.uid,
+        //         owner: data.owner || authData.uid
+        //     })
+        // });
 
     }
 
     logout () {
-        base.initializedApp.firebase_.auth().signOut().then(() => {
-            this.setState({
-                uid: null
-            })
-          }, (error) => {
-            // An error happened.
-          });
+        // base.initializedApp.firebase_.auth().signOut().then(() => {
+        //     this.setState({
+        //         uid: null
+        //     })
+        //   }, (error) => {
+        //     // An error happened.
+        //   });
     }
     
     renderInventory(key) {
@@ -102,13 +100,13 @@ class Inventory extends React.Component {
     }
 
     renderLogin() {
-        return (
-            <nav className="login">
-                <h2>Inventory</h2>
-                <button className="github" onClick={() => this.authenticate(new firebase.auth.GithubAuthProvider())}>Log using Github</button>
-                <button className="facebook" onClick={() => this.authenticate(new firebase.auth.FacebookAuthProvider())}>Log using Facebook</button>
-            </nav>
-        )
+        // return (
+        //     <nav className="login">
+        //         <h2>Inventory</h2>
+        //         <button className="github" onClick={() => this.authenticate(new firebase.auth.GithubAuthProvider())}>Log using Github</button>
+        //         <button className="facebook" onClick={() => this.authenticate(new firebase.auth.FacebookAuthProvider())}>Log using Facebook</button>
+        //     </nav>
+        // )
     }
 
 

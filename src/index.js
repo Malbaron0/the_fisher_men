@@ -28,7 +28,7 @@ const Main = () => {
 
 
 
-ReactDOM.render(<Main />, document.querySelector('#main'));
+ReactDOM.render(<App />, document.querySelector('#main'));
 
 //import registerServiceWorker from './registerServiceWorker';
 

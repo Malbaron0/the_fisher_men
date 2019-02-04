@@ -12,19 +12,12 @@ body {
   text-align: left;
 }
 
-
-  #main .the-fisher-men > * {
-    -webkit-transform: none;
-            transform: none;
-  }
-
-  .the-fisher-men {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-  }
+.menu {
+  display: flex;
+  flex-direction: column;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
 
   header.top h3 {
     margin: 0;
@@ -72,6 +65,12 @@ body {
   /* margin-top: 0; */
 }
 
+.navbar {
+  position: -webkit-sticky; /* Safari */
+  position: sticky !important;
+  top: 0;
+}
+
 .count-notification {
   position: absolute;
   margin-top: 1.5em;
@@ -101,20 +100,15 @@ h1 {
   font-weight: normal;
   margin: 0;
 }
-
 .order-wrap {
   padding-left: 0.5em;
   color: white;
 }
 
-
-
 .total {
     float: right;
     margin: 0 1em 0.5em 0;
 }
-
-
 
 ul{
   list-style-type: none !important;

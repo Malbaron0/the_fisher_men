@@ -4,7 +4,6 @@ import Order from './Order';
 import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
 import Fish from './Fish';
-import base from '../fireBase';
 
 class App extends React.Component {
     constructor() {
@@ -114,11 +113,9 @@ class App extends React.Component {
                 keyIndex={key} />)
 
         return (
-            <div className="the-fisher-men">
-                <div className="menu">
+            <div className="menu">
                     <Header addTotalCount = {this.addTotalCount} totalCount = {this.state.totalCount} removeOrder = {this.removeOrder} fishies={this.state.fishies} order={this.state.order} tagline="Fresh Seafood Market" />
                     <div className="list-of-fish">{fishList}</div>
-                </div>
             </div>
         )
                 // <Order removeOrder = {this.removeOrder} fishies={this.state.fishies} order={this.state.order} />
