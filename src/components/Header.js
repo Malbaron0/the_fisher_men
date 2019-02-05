@@ -22,7 +22,8 @@ const Header = (props) => {
                 </button>
             </div>
             <div className="collapse  navbar-collapse" id="navbarNav">
-            <hr></hr>
+            <hr className="breakline"></hr>
+            <hr className="breakline"></hr>
                 <Order addTotalCount={props.addTotalCount} totalCount={props.totalCount} removeOrder={props.removeOrder} fishies={props.fishies} order={props.order} />
             </div>
         </nav>

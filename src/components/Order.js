@@ -10,13 +10,13 @@ class Order extends React.Component {
     }
 
 
-    componentDidMount () {
+    componentDidMount() {
 
     }
     renderOrder(key) {
         const fish = this.props.fishies[key];
         const count = this.props.order[key];
-        const removeButton = <button className="warning" onClick={() => this.props.removeOrder(key)}>&times;</button>
+        const removeButton = <button className="fas fa-window-close warning" onClick={() => this.props.removeOrder(key)}>&times;</button>
 
         if (!fish || fish.status === 'unavailable') {
             return <li key={key}>{removeButton}Sorry, {fish ? fish.name : 'fish'} is no longer available</li>
@@ -31,11 +31,13 @@ class Order extends React.Component {
         )
     }
 
+
+
     render() {
         const { order, fishies } = this.props;
         const orderIds = Object.keys(order);
         let fullCount = 0;
-        
+
         const total = orderIds.reduce((prev, key) => {
             const fish = fishies[key];
             const count = order[key];
@@ -50,11 +52,16 @@ class Order extends React.Component {
 
         }, 0);
 
+        const isEmpty = Object.keys(order).length === 0 && order.constructor === Object;
+
         return (
             <div className="order-wrap">
-                <h3>Your Order</h3>
+                <h4>
+                    {isEmpty ? 'Empty :(' : 'Cart'}
+                <i class="fas fa-igloo">s</i>
+                </h4>
 
-                <CSSTransitionGroup className="order"
+                <CSSTransitionGroup className="order order-style"
                     component="ul"
                     transitionName="order"
                     transitionEnterTimeout={500}
@@ -67,7 +74,8 @@ class Order extends React.Component {
                 </CSSTransitionGroup>
             </div>
         )
+        }
     }
-}
+
 
 export default Order;

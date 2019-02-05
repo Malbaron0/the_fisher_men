@@ -105,6 +105,9 @@ h1 {
   color: white;
 }
 
+.order-wrap h4{
+  margin-top: 1em;
+}
 .total {
     float: right;
     margin: 0 1em 0.5em 0;
@@ -130,6 +133,11 @@ ul{
     margin: 0.5em;
 }
 
+.breakline {
+  background: wheat !important;
+  margin: 0.1em 0em;
+  
+}
 
 /*New section*/
 
