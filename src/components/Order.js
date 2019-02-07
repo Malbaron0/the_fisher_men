@@ -16,7 +16,7 @@ class Order extends React.Component {
     renderOrder(key) {
         const fish = this.props.fishies[key];
         const count = this.props.order[key];
-        const removeButton = <button className="fas fa-window-close warning" onClick={() => this.props.removeOrder(key)}>&times;</button>
+        const removeButton = <i className="fas fa-window-close warning" onClick={() => this.props.removeOrder(key)}></i>
 
         if (!fish || fish.status === 'unavailable') {
             return <li key={key}>{removeButton}Sorry, {fish ? fish.name : 'fish'} is no longer available</li>
@@ -58,7 +58,7 @@ class Order extends React.Component {
             <div className="order-wrap">
                 <h4>
                     {isEmpty ? 'Empty :(' : 'Cart'}
-                <i class="fas fa-igloo">s</i>
+                <i class="fas fa-igloo"></i>
                 </h4>
 
                 <CSSTransitionGroup className="order order-style"
