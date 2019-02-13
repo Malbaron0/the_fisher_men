@@ -8,7 +8,7 @@ const Header = (props) => {
         //     <h1>The fisher Men</h1>
         //     <h3 className="tagline"><span>{props.tagline}</span></h3>
         // </header>
-        <nav className="navbar navbar-expand-lg navbar-light">
+        <nav className="navbar fixed-top bg-dark navbar-dark">
             <div className="navbar-brand">
                 <header className="top">
                     <h2>The Fisher Men</h2>
@@ -18,7 +18,7 @@ const Header = (props) => {
             <div>
             <div className="container">
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon pull-right"></span>
+                    <span className="pull-right fas fa-shopping-cart"></span>
                 </button>
                 <span className="badge badge-notify">{props.totalCount}</span>
             </div>

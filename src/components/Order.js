@@ -1,7 +1,6 @@
 import React from 'react';
 import { formatPrice } from '../helpers';
 import CSSTransitionGroup from 'react-addons-css-transition-group'; //easy way to perform CSS transitions and animations when a React component enters or leaves the DOM
-import { throws } from 'assert';
 
 class Order extends React.Component {
     constructor() {
@@ -16,7 +15,7 @@ class Order extends React.Component {
     renderOrder(key) {
         const fish = this.props.fishies[key];
         const count = this.props.order[key];
-        const removeButton = <i className="fas fa-window-close warning" onClick={() => this.props.removeOrder(key)}></i>
+        const removeButton = <i className="trash far fa-trash-alt" onClick={() => this.props.removeOrder(key)}></i>
 
         if (!fish || fish.status === 'unavailable') {
             return <li key={key}>{removeButton}Sorry, {fish ? fish.name : 'fish'} is no longer available</li>
@@ -24,10 +23,18 @@ class Order extends React.Component {
 
         return (
 
-            <li key={key}>
+            <li key={key} className="order-item">
                 <span>{removeButton} {count}lbs {fish.name}</span>
-                <span className="price">{formatPrice((count * fish.price))}</span>
+                <span className="price"><span>$</span>{formatPrice((count * fish.price))}</span>
             </li>
+        )
+    }
+
+    sad = () => {
+        return (
+            <div>
+                Empty <i className="fas fa-sad-tear"></i>
+            </div>
         )
     }
 
@@ -57,8 +64,7 @@ class Order extends React.Component {
         return (
             <div className="order-wrap">
                 <h4>
-                    {isEmpty ? 'Empty :(' : 'Cart'}
-                <i class="fas fa-igloo"></i>
+                    {isEmpty ? this.sad() : ''}
                 </h4>
 
                 <CSSTransitionGroup className="order order-style"
@@ -69,7 +75,7 @@ class Order extends React.Component {
 
                     {orderIds.map(key => this.renderOrder(key))}
                     <li className="total">
-                        <strong>Total: {formatPrice(total)}</strong>
+                        <strong>Total: <span>$</span>{formatPrice(total)}</strong>
                     </li>
                 </CSSTransitionGroup>
             </div>

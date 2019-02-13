@@ -17,10 +17,8 @@ body {
 }
 
 .menu {
-  display: flex;
-  flex-direction: column;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+  height: 100vh;
+  width: 100vw;
 }
 
 header.top {
@@ -47,7 +45,6 @@ header.top h3 {
 }
 
 .navbar {
-  position: relative;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -74,46 +71,43 @@ header.top h3 {
 }
 
 .navbar-toggler {
-  padding: .25rem .75rem;
-  font-size: 1.25rem;
+  padding: .35rem .75rem;
+  font-size: 1.7em;
   line-height: 1;
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: .25rem;
-  margin-bottom: 0.5em;
   /* float: left; */
   /* margin-top: 0; */
 }
 
-.navbar {
-  position: -webkit-sticky;
-  /* Safari */
-  position: sticky !important;
-  top: 0;
-}
-
-.count-notification {
-  position: relative;
-  background: red;
-  border-radius: 1em;
-  width: 1.3em;
-  text-align: center;
+.navbar-toggler span {
   color: white;
-  top: 20px;
-  left: -70px;
+  vertical-align: middle;
 }
-
 
 .badge-notify {
   background: red;
   position: relative;
   font-size: 0.8em;
-  top: 20px;
+  top: 14px;
   left: -65px;
   color: white;
 }
 
+.order {
+  margin-left: -2em;
+}
 
+.order-item{
+  margin-bottom: 0.3em;
+}
+
+/*Targeting second to last item (last item in the cart) and increasing bottom margin creating more space between total price
+and last item in the cart's price*/
+.order-item:nth-last-child(2){
+  margin-bottom: 1.5em;
+}
 
 .order-wrap {
   padding-left: 0.5em;
@@ -122,6 +116,21 @@ header.top h3 {
 
 .order-wrap h4 {
   margin-top: 1em;
+}
+
+.price {
+  float: right;
+  margin-right: 1em;
+}
+
+.price span, .total span {
+  color: green;
+  margin-right: 0.2em;
+}
+
+.trash {
+  margin-right: 1em;
+  color: rgb(185, 51, 51);
 }
 
 .total {
@@ -136,7 +145,7 @@ ul {
 .list-of-fish {
   display: flex;
   flex-direction: column;
-  margin: 0 1em;
+  margin: 5em 1em 0;
 }
 
 .menu-fish {
