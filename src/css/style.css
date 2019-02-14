@@ -145,17 +145,34 @@ ul {
 .list-of-fish {
   display: flex;
   flex-direction: column;
-  margin: 5em 1em 0;
+  margin-top: 4em;
 }
 
 .menu-fish {
   margin: 2em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+img {
+  width: 20em;
+  border-radius: 0.3em;
 }
 
 .fish-name {
-  font-size: 1.4em;
+  font-size: 1.6em;
   line-height: 1.2;
-  margin: 0.5em;
+  margin: 0.5em 0;
+}
+
+.fish-name .price {
+  margin-left: 1em;
+}
+
+.fish-desc {
+  margin: 0 0.5em;
 }
 
 .breakline {
