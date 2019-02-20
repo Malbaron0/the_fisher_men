@@ -4,7 +4,7 @@ h4,
 h5,
 h6 {
   font-weight: normal;
-  font-family: 'haymakerregular', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -14,7 +14,10 @@ body {
   font-weight: 400;
   color: #212529;
   text-align: left;
+  font-family: 'Open Sans', sans-serif;
 }
+
+
 
 .menu {
   height: 100vh;
@@ -23,6 +26,7 @@ body {
 
 header.top {
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 header.top h2 {
@@ -181,6 +185,30 @@ img {
 
 }
 
+.list-of-fish  button {
+  text-transform: uppercase;
+    background: none;
+    border: 1px solid #000;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Open Sans';
+    transition: all 0.2s;
+    position: relative;
+    z-index: 2;
+}
+
+.list-of-fish  button:active {
+  font-size: 1.3rem;
+}
+
+.list-of-fish  button:hover {
+  background: black;
+  border: 1px solid white;
+  color: #fff;
+  outline: 0;
+}
+
+
 /*New section*/
 
 .order-enter {
@@ -211,4 +239,17 @@ img {
   padding: 0;
   -webkit-transform: translateX(120%);
   transform: translateX(120%);
+}
+
+button[disabled] {
+  color: #d12028;
+  border-color: #d12028;
+  -webkit-transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
+          transform: rotate(-20deg) scale(1.5) translateX(0%) translateY(-70%);
+  background: transparent;
+}
+
+button[disabled]:hover {
+  color: #d12028;
+  cursor: not-allowed;
 }
